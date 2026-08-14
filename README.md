@@ -1,180 +1,101 @@
-<p align="center">
-  <img src="https://i.imgur.com/pvKzM9G.png">
-  <br>
-  <img src="https://pepy.tech/badge/drugwars">
-  <img src="https://img.shields.io/github/issues/M4cs/drugwars">
-  <img src="https://img.shields.io/github/stars/M4cs/drugwars">
-  <br>
-  <a href="https://discord.gg/2Xjc5fm" target="_blank"><img src="https://images.squarespace-cdn.com/content/v1/52290b27e4b0d4e459887aa9/1523645697591-KOD97HRR5QMOQ99BU0SK/ke17ZwdGBToddI8pDm48kPGHCmdEuDVllAdzL7xM7OxZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyzorRYpSuI1QCKuYWJsZxMGWkkNP4-spN_NRwwEFqVwPzJYUtQepn4ZOWE62R4wIk/join-us-on-discord_1.png" height="95" width="300"></a>
-</p>
+# The Neverwildens
 
-# Drugwars
-### The DOS game from the 80s re-written in Python from Scratch!
+**Working title.** A text-first fantasy economy RPG about becoming wealthy, collecting and raising creatures, owning property, exploring a changing world, and making choices whose effects persist.
 
-Play in your browser [Here](https://Drugwars-Online-Version.m4cs.repl.run)
+This branch is a clean starter architecture built alongside the repository's original Drug Wars implementation. It keeps the fast economic clarity of Drug Wars while separating game rules from presentation and world content.
 
+## What is already runnable
 
-# Installation
+The starter includes thin, testable versions of:
 
-**Recommended:** Using pip
+- regional markets with deterministic daily price movement;
+- weighted inventory and carrying limits;
+- debt interest, travel and a persistent calendar;
+- property purchase, resale and weekly income;
+- owned pet creatures with bond, traits, value and records;
+- simulated creature racing, betting payouts and creature fights;
+- solo, strict-round player combat;
+- permanent, socket-inspired active and support magic modules;
+- Reigns-like event choices with flags and delayed-state support;
+- faction reputation, knowledge and trade-prosperity state;
+- JSON saves with an explicit schema version;
+- a data-driven starter world and interactive terminal shell.
 
-```
-pip3 install drugwars
+The current content is deliberately small. It proves the architecture; it is not meant to be the finished game.
 
-# To Update
-pip3 install --upgrade drugwars
-```
+## Run it
 
-Installing from source
-
-```
-git clone https://github.com/M4cs/drugwars
-cd drugwars
-python3 setup.py install
-drugwars
+```bash
+python -m venv .venv
+source .venv/bin/activate       # Windows: .venv\Scripts\activate
+pip install -e ".[dev]"
+neverwildens
 ```
 
-# How to Play
+Or:
 
-### Gameplay
-
-The game is played inside of your terminal and uses letters and numbers to select things and take part actions.
-
-You start with 2000 dollars and 5500 dollars in debt to the loan shark. The goal of the game is to pay off the loan shark and get as much money as possible while avoiding cops or getting mugged.
-
-Cops can shoot at you and you have 20 hit points until you die and the game ends. You are able to purchase guns occasionally which will give you a chance to kill the cops.
-
-You have 30 days to buy and sell as many drugs as possible to make a profit. Prices are randomly generated so it's all dependent on the market in the area you're at.
-
-There are events that can happen inbetween moving areas. These can either be good for you or bad, it's all random.
-
-You have access to a bank and stash in the Bronx which allows you to store money and drugs to keep them safe while getting mugged or caught by the cops.
-
-### Rules
-
-- You cannot go back to a location if you have chosen jet, you must travel somewhere else.
-- You can only go to the loan shark, bank, and stash in the Bronx.
-- You only have 30 days to make your money and pay back the loan shark.
-- Your debt increases each day with interest so pay it back ASAP
-- Your savings will increase each day with interest as well.
-
-### Controls
-
-**When asked yes or no questions:** Respond with `y` or `n`
-
-**When asked to (B)uy, (S)ell, or (J)et:** Respond with `b` to buy, `s` to sell, or `j` to jet
-
-**When asked to (R)un or (F)ight:** Respond with `r` to run, or `f` to fight
-
-**When asked where to go:** Respond with a number `1-6`, these correspond to a location on the table
-
-### Troubleshooting
-
-**I pressed buy or sell and I didn't mean to!**
-
-Simply choose a drug and set 0 as the quantity.
-
-**I jetted but want to go back.**
-
-You can't this is a game mechanic. Be careful with your choices!
-
-# Why did I make this?
-
-Drugwars is a game I've been playing for a long time, well before I learned how to program. Now that I'm apt in Python I thought what the hell, why not rewrite a game I love in Python and release it. Well that's what I'm doing and here it is. Enjoy :)
-
-# Changelog
-
-v1.3 (by aconamos)
-```
-- Added "a"/"all", "h"/"half", and percent values to selling/buying drugs
-- Added amount of days option
-- Fixed score going into negative
+```bash
+python -m neverwildens
 ```
 
-v1.2.1
+Useful shell commands:
 
-```
-- Fix End Game
-- Add Endgame
-- Change Coat Probability
-```
-
-v1.2.0
-
-```
-- Optimized Drug Stashes
-- Optimized Stash Menu
-- Optimized Classes
-- Optimized Helpers
-- Bug Fixes
-- Added Withdraw to Stash (it was missing lol)
-```
-
-v1.1.10
-
-```
-- Adds "a"/"all" and "h"/"half" features in Loan Shark and Bank
+```text
+status
+market
+buy moonmoss 2
+routes
+travel brambleward
+event
+choose follow
+properties
+creatures
+train companion-1 speed
+race companion-1
+petfight companion-1
+combat road_cutpurse
+attack
+magic ember
+save save.json
+quit
 ```
 
-v1.1.9
+Run checks:
 
-```
-- Fix infinite loop in Issue #2
-```
-
-v1.1.8
-
-```
-- Added difficulty screen
+```bash
+pytest
+ruff check .
 ```
 
-v1.1.7
+## Project shape
 
-```
-- Fix loan shark balance
-- Fix input bugs
-```
-
-v1.1.6:
-
-```
-- Fix borrowing
-```
-
-v1.1.5:
-
-```
-- Fix actions breaking
+```text
+content/starter_world.json      Starter content pack
+src/neverwildens/models.py      Definitions and serialisable state
+src/neverwildens/content.py     Content loading and validation
+src/neverwildens/systems.py     Economy, property and creature systems
+src/neverwildens/combat.py      Solo strict-round combat
+src/neverwildens/engine.py      Headless command API
+src/neverwildens/cli.py         Replaceable terminal presentation
+tests/                          Behavioural tests
+docs/                           Locked design and build guidance
+AGENTS.md                       Rules for future coding agents/prompts
 ```
 
-v1.1.4:
+## Read before extending
 
-```
-- Remove Auto update
-```
+1. [`docs/DESIGN_CHARTER.md`](docs/DESIGN_CHARTER.md) — the game we have actually chosen.
+2. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — system boundaries and save/content rules.
+3. [`docs/ROADMAP.md`](docs/ROADMAP.md) — incremental milestones and acceptance criteria.
+4. [`docs/CONTENT_GUIDE.md`](docs/CONTENT_GUIDE.md) — how worldbuilding plugs into the engine.
+5. [`docs/PROMPT_PLAYBOOK.md`](docs/PROMPT_PLAYBOOK.md) — how to continue development safely across many prompts.
 
-v1.1.3:
+## Non-negotiable product rule
 
-```
-- Fix logic around pricing events
-```
+Every substantial activity should feed at least two other systems. Mining is not an isolated minigame: it supplies trade, property development, equipment and magic discoveries. Racing affects creature value, betting, reputation and rival relationships. Choices alter markets, faction power, access and property values.
 
-v1.1.2:
+## Legacy and licensing
 
-```
-- Disable Actions from occuring first round
-```
+The original `drugwars/` package remains as reference material. The new `src/neverwildens/` code is written as a separate architecture rather than a line-by-line conversion.
 
-v1.1.1:
-
-```
-- Adds auto update check (Set DO_NOT_UPDATE to 1 to skip)
-```
-
-v1.1.0:
-
-```
-- Adds upgrade trench coat
-- Changes chances of getting away from Headass
-- Fixes crashing bugs
-```
+This repository currently carries the GNU GPL v3 licence. A deliberate licensing decision is required before treating the project as closed-source commercial software or moving it into a differently licensed repository.
