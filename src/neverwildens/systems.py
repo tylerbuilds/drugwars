@@ -218,7 +218,11 @@ class CreatureSystem:
                 )
             )
         entrants.sort(key=lambda row: row[1], reverse=True)
-        placing = next(index for index, row in enumerate(entrants, start=1) if row[0] == creature.name)
+        placing = next(
+            index
+            for index, row in enumerate(entrants, start=1)
+            if row[0] == creature.name
+        )
         payout_table = {1: entry_fee * 5, 2: entry_fee * 2, 3: entry_fee}
         payout = payout_table.get(placing, 0)
         state.player.cash += payout
