@@ -1,0 +1,524 @@
+{
+  "meta": {
+    "id": "bellweather-march",
+    "name": "The March of Bellweather",
+    "schema_version": 1,
+    "working_title": "The Neverwildens",
+    "tone": "warm, strange and commercially alive above; ancient and unsettling below"
+  },
+  "settings": {
+    "starting_location_id": "bellweather",
+    "starting_cash": 2000,
+    "starting_debt": 5500,
+    "starting_capacity_kg": 25.0,
+    "actions_per_day": 3,
+    "daily_debt_interest": 0.01,
+    "starting_creature_species_id": "ashcat",
+    "starting_creature_name": "Nim",
+    "starting_modules": ["ember", "mend", "siphon"],
+    "starting_module_links": [["ember", "siphon"]],
+    "race_entry_fee": 30,
+    "creature_fight_entry_fee": 25
+  },
+  "factions": [
+    {
+      "id": "brass_ledger",
+      "name": "The Brass Ledger",
+      "description": "Creditors, auctioneers and route monopolists who insist trade requires order."
+    },
+    {
+      "id": "roadwardens",
+      "name": "The Roadwardens",
+      "description": "Guides, carriers and surveyors who want the old roads reopened safely."
+    },
+    {
+      "id": "wild_choir",
+      "name": "The Wild Choir",
+      "description": "Keepers of creatures and places that do not accept ownership easily."
+    }
+  ],
+  "commodities": [
+    {
+      "id": "glowfruit",
+      "name": "Glowfruit",
+      "base_price": 14,
+      "weight_kg": 0.2,
+      "tags": ["food", "creature-care"],
+      "description": "A common luminous fruit used as food, bait and cheap creature feed."
+    },
+    {
+      "id": "moonmoss",
+      "name": "Moonmoss",
+      "base_price": 85,
+      "weight_kg": 0.1,
+      "tags": ["healing", "alchemy"],
+      "description": "Medicinal moss that becomes valuable during illness and travel disruption."
+    },
+    {
+      "id": "whisper_ink",
+      "name": "Whisper Ink",
+      "base_price": 280,
+      "weight_kg": 0.4,
+      "tags": ["knowledge", "restricted"],
+      "description": "Ink used by archives, surveyors and people who alter records."
+    },
+    {
+      "id": "bellglass",
+      "name": "Bellglass",
+      "base_price": 520,
+      "weight_kg": 1.6,
+      "tags": ["construction", "magic"],
+      "description": "Resonant glass used in wards, instruments and old-road apparatus."
+    },
+    {
+      "id": "stormsalt",
+      "name": "Stormsalt",
+      "base_price": 410,
+      "weight_kg": 0.8,
+      "tags": ["magic", "training"],
+      "description": "Volatile crystals used in elemental training and illegal racing tonics."
+    },
+    {
+      "id": "star_iron",
+      "name": "Star-Iron",
+      "base_price": 3300,
+      "weight_kg": 7.5,
+      "tags": ["construction", "relic"],
+      "description": "Rare metal recovered from ruins whose joins do not resemble smithing."
+    },
+    {
+      "id": "river_pearl",
+      "name": "River Pearl",
+      "base_price": 190,
+      "weight_kg": 0.05,
+      "tags": ["fishing", "luxury"],
+      "description": "A living pearl harvested from long-finned river mussels."
+    },
+    {
+      "id": "blackroot",
+      "name": "Blackroot",
+      "base_price": 42,
+      "weight_kg": 0.5,
+      "tags": ["food", "crafting"],
+      "description": "A durable root traded as food, dye stock and mine ration."
+    }
+  ],
+  "locations": [
+    {
+      "id": "bellweather",
+      "name": "Bellweather",
+      "description": "A debt-built market town of auction halls, leaning roofs and polite threats.",
+      "property_multiplier": 1.05,
+      "market_multipliers": {
+        "glowfruit": 1.05,
+        "moonmoss": 1.2,
+        "whisper_ink": 0.9,
+        "bellglass": 1.1,
+        "stormsalt": 1.15,
+        "star_iron": 1.05,
+        "river_pearl": 1.3,
+        "blackroot": 1.0
+      }
+    },
+    {
+      "id": "brambleward",
+      "name": "Brambleward",
+      "description": "A wet woodland settlement where paths move and creatures are treated as neighbours.",
+      "property_multiplier": 0.85,
+      "market_multipliers": {
+        "glowfruit": 0.7,
+        "moonmoss": 0.55,
+        "whisper_ink": 1.3,
+        "bellglass": 1.25,
+        "stormsalt": 1.05,
+        "star_iron": 1.2,
+        "river_pearl": 0.8,
+        "blackroot": 0.65
+      }
+    },
+    {
+      "id": "cinderdeep",
+      "name": "Cinderdeep",
+      "description": "A mining town built around furnaces and a sealed shaft older than its maps.",
+      "property_multiplier": 1.15,
+      "market_multipliers": {
+        "glowfruit": 1.35,
+        "moonmoss": 1.4,
+        "whisper_ink": 1.1,
+        "bellglass": 0.8,
+        "stormsalt": 0.7,
+        "star_iron": 0.72,
+        "river_pearl": 1.45,
+        "blackroot": 1.2
+      }
+    }
+  ],
+  "routes": [
+    {"origin": "bellweather", "destination": "brambleward", "days": 1, "risk": 0.12},
+    {"origin": "brambleward", "destination": "bellweather", "days": 1, "risk": 0.12},
+    {"origin": "bellweather", "destination": "cinderdeep", "days": 2, "risk": 0.2},
+    {"origin": "cinderdeep", "destination": "bellweather", "days": 2, "risk": 0.2},
+    {"origin": "brambleward", "destination": "cinderdeep", "days": 2, "risk": 0.3},
+    {"origin": "cinderdeep", "destination": "brambleward", "days": 2, "risk": 0.3}
+  ],
+  "properties": [
+    {
+      "id": "leaning_house",
+      "name": "The Leaning House",
+      "location_id": "bellweather",
+      "purchase_price": 350,
+      "weekly_income": 0,
+      "starting_owned": true,
+      "category": "personal",
+      "description": "Your damaged, indebted home and future estate. Something hums beneath its cellar."
+    },
+    {
+      "id": "riverside_rooms",
+      "name": "Riverside Rooms",
+      "location_id": "bellweather",
+      "purchase_price": 900,
+      "weekly_income": 70,
+      "category": "residential",
+      "description": "Three damp rooms whose tenants care more about location than plaster."
+    },
+    {
+      "id": "bramble_woodlot",
+      "name": "Bramble Woodlot",
+      "location_id": "brambleward",
+      "purchase_price": 1200,
+      "weekly_income": 45,
+      "category": "resource",
+      "description": "A managed woodlot with disputed paths and future creature-habitat potential."
+    },
+    {
+      "id": "cinder_storefront",
+      "name": "Cinderdeep Storefront",
+      "location_id": "cinderdeep",
+      "purchase_price": 1600,
+      "weekly_income": 110,
+      "category": "commercial",
+      "description": "A soot-dark shop positioned between the mine lifts and the workers' quarter."
+    }
+  ],
+  "creature_species": [
+    {
+      "id": "ashcat",
+      "name": "Ashcat",
+      "base_value": 240,
+      "description": "A six-eared feline whose fur warms when danger approaches.",
+      "traits": ["alert"],
+      "stats": {"speed": 68, "stamina": 52, "focus": 61, "strength": 58, "temperament": 48}
+    },
+    {
+      "id": "mossback",
+      "name": "Mossback",
+      "base_value": 260,
+      "description": "A broad, antlered creature valued for stamina, hauling and steady temperament.",
+      "traits": ["sure-footed"],
+      "stats": {"speed": 38, "stamina": 82, "focus": 55, "strength": 78, "temperament": 72}
+    },
+    {
+      "id": "scrywing",
+      "name": "Scrywing",
+      "base_value": 390,
+      "description": "A feathered serpent prized for focus, route-sense and nervous speed.",
+      "traits": ["omensense"],
+      "stats": {"speed": 77, "stamina": 44, "focus": 85, "strength": 31, "temperament": 40}
+    },
+    {
+      "id": "riverstrider",
+      "name": "Riverstrider",
+      "base_value": 310,
+      "description": "A long-legged amphibious racer dominant on wet courses.",
+      "traits": ["mud-runner"],
+      "stats": {"speed": 72, "stamina": 70, "focus": 52, "strength": 46, "temperament": 56}
+    },
+    {
+      "id": "brassbeak",
+      "name": "Brassbeak",
+      "base_value": 180,
+      "description": "A clever scavenging bird used by traders and dishonest bookmakers.",
+      "traits": ["greedy"],
+      "stats": {"speed": 63, "stamina": 41, "focus": 74, "strength": 29, "temperament": 62}
+    },
+    {
+      "id": "gloomhound",
+      "name": "Gloomhound",
+      "base_value": 430,
+      "description": "A powerful, reserved animal whose shadow is never correctly aligned.",
+      "traits": ["late-surging"],
+      "stats": {"speed": 59, "stamina": 76, "focus": 66, "strength": 81, "temperament": 34}
+    }
+  ],
+  "magic_modules": [
+    {
+      "id": "ember",
+      "name": "Ember Node",
+      "kind": "active",
+      "effect": "damage",
+      "power": 10,
+      "value": 350,
+      "permanent": true,
+      "description": "Projects heat through a compatible socket."
+    },
+    {
+      "id": "mend",
+      "name": "Mend Node",
+      "kind": "active",
+      "effect": "heal",
+      "power": 9,
+      "value": 420,
+      "permanent": true,
+      "description": "Reorders living tissue at a manageable cost."
+    },
+    {
+      "id": "frost",
+      "name": "Frost Node",
+      "kind": "active",
+      "effect": "damage",
+      "power": 8,
+      "value": 480,
+      "permanent": true,
+      "description": "Draws heat away from a target."
+    },
+    {
+      "id": "ward",
+      "name": "Ward Node",
+      "kind": "active",
+      "effect": "ward",
+      "power": 8,
+      "value": 510,
+      "permanent": true,
+      "description": "Creates a brief defensive field."
+    },
+    {
+      "id": "siphon",
+      "name": "Siphon Link",
+      "kind": "support",
+      "effect": "siphon",
+      "power": 0,
+      "value": 900,
+      "permanent": true,
+      "description": "Linked damage restores a portion of the user's vitality."
+    },
+    {
+      "id": "spread",
+      "name": "Spread Link",
+      "kind": "support",
+      "effect": "spread",
+      "power": 0,
+      "value": 1050,
+      "permanent": true,
+      "description": "Linked effects can reach multiple targets once group combat exists."
+    }
+  ],
+  "enemies": [
+    {
+      "id": "road_cutpurse",
+      "name": "Road Cutpurse",
+      "max_hp": 34,
+      "attack": 7,
+      "reward_cash": 55,
+      "description": "A desperate robber who knows where traders keep their quick-access coin."
+    },
+    {
+      "id": "marsh_prowler",
+      "name": "Marsh Prowler",
+      "max_hp": 46,
+      "attack": 9,
+      "reward_cash": 0,
+      "description": "A territorial animal with plated shoulders and no interest in your debt."
+    },
+    {
+      "id": "ledger_collector",
+      "name": "Ledger Collector",
+      "max_hp": 58,
+      "attack": 11,
+      "reward_cash": 120,
+      "description": "An armed creditor whose paperwork is more dangerous than the club."
+    },
+    {
+      "id": "shaft_echo",
+      "name": "Shaft Echo",
+      "max_hp": 70,
+      "attack": 13,
+      "reward_cash": 210,
+      "description": "Something from the sealed mine repeating the outline of a person."
+    }
+  ],
+  "events": [
+    {
+      "id": "broken_courier",
+      "trigger": "travel",
+      "title": "The Broken Courier",
+      "text": "A courier crouches beneath a cracked milestone beside a sealed black crate.",
+      "location_ids": ["brambleward", "bellweather"],
+      "once": true,
+      "choices": [
+        {
+          "id": "help",
+          "text": "Spend 20 crowns treating the courier and ask what happened.",
+          "effects": [
+            {"op": "cash", "value": -20},
+            {"op": "knowledge", "value": 2},
+            {"op": "faction", "target": "roadwardens", "value": 2},
+            {"op": "flag", "target": "helped_broken_courier"}
+          ],
+          "outcome": "The courier shows you a route mark that does not appear on any current map."
+        },
+        {
+          "id": "crate",
+          "text": "Take the crate and promise to deliver it without questions.",
+          "effects": [
+            {"op": "cash", "value": 120},
+            {"op": "faction", "target": "brass_ledger", "value": 1},
+            {"op": "flag", "target": "accepted_black_crate"},
+            {"op": "market_modifier", "target": "whisper_ink", "value": 1.35}
+          ],
+          "outcome": "The courier pays immediately. Something inside the crate scratches once."
+        },
+        {
+          "id": "leave",
+          "text": "Leave before the problem becomes yours.",
+          "effects": [{"op": "trait", "target": "cautious"}],
+          "outcome": "You keep moving. By dusk, someone else has removed every trace of the scene."
+        }
+      ]
+    },
+    {
+      "id": "lights_under_water",
+      "trigger": "travel",
+      "title": "Lights Under Water",
+      "text": "Cold lights move beneath the river in a pattern your companion seems to recognise.",
+      "location_ids": ["brambleward"],
+      "once": true,
+      "choices": [
+        {
+          "id": "follow",
+          "text": "Follow the lights along the bank.",
+          "effects": [
+            {"op": "knowledge", "value": 3},
+            {"op": "flag", "target": "saw_submerged_route"}
+          ],
+          "outcome": "The lights lead to a stone arch beneath the surface, its sockets still faintly warm."
+        },
+        {
+          "id": "fish",
+          "text": "Use the disturbance to gather whatever rises from the riverbed.",
+          "effects": [{"op": "item", "target": "river_pearl", "value": 2}],
+          "outcome": "You recover two living pearls before the lights vanish downstream."
+        },
+        {
+          "id": "ignore",
+          "text": "Do not let curiosity cost another day.",
+          "effects": [{"op": "cash", "value": 10}],
+          "outcome": "You reach the next toll before nightfall and save a little road money."
+        }
+      ]
+    },
+    {
+      "id": "tenant_roof",
+      "trigger": "explore",
+      "title": "The Roof Petition",
+      "text": "Tenants from the riverside quarter ask property owners to fund storm repairs.",
+      "location_ids": ["bellweather"],
+      "once": true,
+      "choices": [
+        {
+          "id": "contribute",
+          "text": "Contribute 100 crowns to the repairs.",
+          "effects": [
+            {"op": "cash", "value": -100},
+            {"op": "trade_prosperity", "value": 3},
+            {"op": "flag", "target": "funded_riverside_roofs"}
+          ],
+          "outcome": "The work begins immediately, and local rents become a little less precarious."
+        },
+        {
+          "id": "loan",
+          "text": "Offer the money as a high-interest private loan.",
+          "effects": [
+            {"op": "cash", "value": 80},
+            {"op": "trade_prosperity", "value": -2},
+            {"op": "trait", "target": "hard_creditor"}
+          ],
+          "outcome": "They accept because the storm will not negotiate. Your name spreads for other reasons."
+        }
+      ]
+    },
+    {
+      "id": "cinder_auction_tip",
+      "trigger": "travel",
+      "title": "A Quiet Auction Tip",
+      "text": "A bookmaker claims a repossessed Cinderdeep storefront will be listed below value.",
+      "location_ids": ["cinderdeep"],
+      "once": true,
+      "choices": [
+        {
+          "id": "buy_tip",
+          "text": "Pay 40 crowns for the full valuation notes.",
+          "effects": [
+            {"op": "cash", "value": -40},
+            {"op": "knowledge", "value": 1},
+            {"op": "flag", "target": "knows_cinder_storefront"}
+          ],
+          "outcome": "The notes reveal real structural damage, but also a planned mine-gate expansion."
+        },
+        {
+          "id": "bet",
+          "text": "Ignore the property and ask for tonight's race favourite.",
+          "effects": [
+            {"op": "cash", "value": 25},
+            {"op": "trait", "target": "gambler"}
+          ],
+          "outcome": "The tip wins narrowly. You make a small profit and acquire a taste for the noise."
+        },
+        {
+          "id": "decline",
+          "text": "Decline both offers.",
+          "effects": [],
+          "outcome": "The bookmaker shrugs. Information belongs to whoever pays before it becomes obvious."
+        }
+      ]
+    },
+    {
+      "id": "unlicensed_breeder",
+      "trigger": "explore",
+      "title": "The Unlicensed Breeder",
+      "text": "A breeder offers a rare egg without pedigree papers while your companion watches closely.",
+      "location_ids": ["brambleward", "bellweather"],
+      "once": true,
+      "choices": [
+        {
+          "id": "report",
+          "text": "Report the sale to the Wild Choir.",
+          "effects": [
+            {"op": "faction", "target": "wild_choir", "value": 3},
+            {"op": "knowledge", "value": 1},
+            {"op": "flag", "target": "reported_unlicensed_breeder"}
+          ],
+          "outcome": "The Choir takes the egg into care and gives you access to its lineage archive."
+        },
+        {
+          "id": "buy",
+          "text": "Pay a 150-crown deposit and reserve the egg.",
+          "effects": [
+            {"op": "cash", "value": -150},
+            {"op": "flag", "target": "reserved_unknown_egg"},
+            {"op": "faction", "target": "wild_choir", "value": -1}
+          ],
+          "outcome": "The breeder hides the egg off-site. Breeding is not implemented yet, but the promise persists."
+        },
+        {
+          "id": "question",
+          "text": "Question the breeder about the missing papers.",
+          "effects": [
+            {"op": "knowledge", "value": 2},
+            {"op": "flag", "target": "heard_wayling_name"}
+          ],
+          "outcome": "Under pressure, the breeder uses an extinct name: wayling."
+        }
+      ]
+    }
+  ]
+}
