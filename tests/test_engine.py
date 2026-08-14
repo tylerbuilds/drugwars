@@ -5,7 +5,6 @@ import pytest
 from neverwildens.content import load_world
 from neverwildens.engine import GameEngine
 
-
 CONTENT_PATH = Path(__file__).parents[1] / "content" / "starter_world.json"
 
 

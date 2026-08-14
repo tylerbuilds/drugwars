@@ -15,14 +15,5 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install --upgrade pip
       - run: pip install -e ".[dev]"
-      - name: Show Ruff's exact safe fix
-        run: |
-          ruff check . --fix || true
-          python - <<'PY'
-          import base64
-          from pathlib import Path
-          payload = base64.b64encode(Path("tests/test_engine.py").read_bytes()).decode("ascii")
-          print(f"::error file=tests/test_engine.py,line=1,title=ruff-fixed-base64::{payload}")
-          PY
-          git diff --exit-code
+      - run: ruff check . --output-format=github
       - run: pytest
